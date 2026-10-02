@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Дизайн-проекты</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background: #f4f1ec;
+    color: #1a1a1a;
+    min-height: 100vh;
+    padding: 48px 24px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+  }
+  .wrap { max-width: 640px; width: 100%; }
+  header { margin-bottom: 40px; }
+  h1 { font-size: 28px; font-weight: 600; letter-spacing: -0.02em; margin-bottom: 6px; }
+  .subtitle { color: #8a8580; font-size: 14px; }
+
+  .list { display: flex; flex-direction: column; gap: 8px; }
+
+  .project {
+    display: flex; justify-content: space-between; align-items: center;
+    background: #fff;
+    padding: 20px 24px;
+    border-radius: 16px;
+    text-decoration: none; color: #1a1a1a;
+    transition: .18s;
+    gap: 16px;
+  }
+  .project:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0,0,0,.06);
+  }
+  .project-info { min-width: 0; }
+  .project-name { font-size: 16px; font-weight: 500; margin-bottom: 4px; }
+  .project-meta { color: #8a8580; font-size: 13px; }
+  .arrow { color: #8a8580; font-size: 18px; flex-shrink: 0; }
+
+  .empty {
+    background: #fff; padding: 40px 24px; border-radius: 16px;
+    text-align: center; color: #8a8580; font-size: 14px;
+  }
+
+  footer {
+    margin-top: 40px; text-align: center;
+    color: #8a8580; font-size: 13px;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <h1>Дизайн-проекты</h1>
+    <div class="subtitle">Студия интерьера · все активные проекты</div>
+  </header>
+
+  <div class="list" id="list"></div>
+
+  <footer>Выберите проект, чтобы посмотреть чертежи и смету</footer>
+
+</div>
+
+<script>
+/* =========================================================
+   СПИСОК ВАШИХ ПРОЕКТОВ
+   Добавляете новый клиент — просто дописываете строчку сюда
+   ========================================================= */
+const PROJECTS = [
+  {
+    file: 'petrov.html',
+    name: 'Квартира на Ленинском, 45',
+    client: 'Сергей Петров',
+    style: 'Минимализм',
+    date: '2026'
+  },
+  {
+    file: 'smirnova.html',
+    name: 'Лофт на Красном Октябре',
+    client: 'Анна Смирнова',
+    style: 'Лофт',
+    date: '2026'
+  },
+  {
+    file: 'ivanov.html',
+    name: 'Дом в Подмосковье',
+    client: 'Иван Иванов',
+    style: 'Классика',
+    date: '2026'
+  }
+  // Дописывайте новые проекты по образцу выше ↑
+  // Не забудьте загрузить сам файл (petrov.html и т.д.) в репозиторий
+];
+
+/* ---------- Рендер списка ---------- */
+const list = document.getElementById('list');
+
+if (PROJECTS.length === 0) {
+  list.innerHTML = `<div class="empty">Проектов пока нет.<br>Добавьте первый в список PROJECTS.</div>`;
+} else {
+  PROJECTS.forEach(p => {
+    const a = document.createElement('a');
+    a.className = 'project';
+    a.href = p.file;
+    a.innerHTML = `
+      <div class="project-info">
+        <div class="project-name">${p.name}</div>
+        <div class="project-meta">${p.client} · ${p.style} · ${p.date}</div>
+      </div>
+      <div class="arrow">→</div>
+    `;
+    list.appendChild(a);
+  });
+}
+</script>
+
+</body>
+</html>
